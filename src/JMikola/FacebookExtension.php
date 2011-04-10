@@ -9,7 +9,7 @@ class FacebookExtension implements ExtensionInterface
 {
     public function register(Application $app)
     {
-        $app['facebook'] = $app->share(function() {
+        $app['facebook'] = $app->share(function() use ($app) {
             return new \Facebook(array(
                 'appId'      => $app['facebook.app.id'],
                 'secret'     => $app['facebook.app.secret'],
