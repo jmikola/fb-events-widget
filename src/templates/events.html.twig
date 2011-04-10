@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>fb-events-widget</title>
+</head>
+<body>
+    <header>
+        <h1>Events</h1>
+    </header>
+    <section>
+        {% for event in events %}
+            <article>
+                <header>
+                    <h1><a href="https://www.facebook.com/event.php?eid={{ event.eid }}">{{ event.name }}</a></h1>
+                    <p><time datetime="{{ event.start_time|date('c') }}" pubdate>{{ event.start_time|date('M j, Y \\a\\t ga') }}</time></p>
+                </header>
+            </article>
+        {% endfor %}
+    </section>
+</body>
+</html>

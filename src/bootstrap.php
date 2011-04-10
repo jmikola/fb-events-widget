@@ -3,6 +3,7 @@
 use JMikola\ConfigExtension;
 use JMikola\FacebookExtension;
 use Silex\Application;
+use Silex\Extension\TwigExtension;
 use Silex\Extension\UrlGeneratorExtension;
 
 require_once __DIR__.'/../vendor/silex/autoload.php';
@@ -19,6 +20,11 @@ $app->register(new ConfigExtension(), array(
 
 $app->register(new FacebookExtension(), array(
     'facebook.class_file' => __DIR__.'/../vendor/facebook/src/facebook.php',
+));
+
+$app->register(new TwigExtension(), array(
+    'twig.path' => __DIR__.'/templates',
+    'twig.class_path' => __DIR__.'/../vendor/silex/vendor/twig/lib',
 ));
 
 $app->register(new UrlGeneratorExtension());
