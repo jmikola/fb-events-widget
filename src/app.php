@@ -1,6 +1,23 @@
 <?php
 
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
 $app = require __DIR__.'/bootstrap.php';
+
+$app->error(function (\Exception $e) use ($app) {
+    $error = null;
+
+    if ($e instanceof NotFoundHttpException || in_array($app['request']->server->get('REMOTE_ADDR'), array('127.0.0.1', '::1'))) {
+        $error = $e->getMessage();
+    }
+
+    return new Response(
+        $app['twig']->render('error.html.twig', array('error' => $error)),
+        $e instanceof HttpExceptionInterface ? $e->getStatusCode() : 500
+    );
+});
 
 $app->get('/', function() use ($app) {
     return $app['twig']->render('index.html.twig', array(
