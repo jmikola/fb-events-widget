@@ -45,6 +45,6 @@ $app->get('/{creatorId}', function($creatorId) use ($app) {
     return $app['twig']->render('widget_events.html.twig', array(
         'events' => $events,
     ));
-});
+})->assert('creatorId', '\d+');
 
 return $app;
