@@ -30,8 +30,8 @@ $app->get('/{creatorId}', function($creatorId) use ($app) {
         SELECT eid, name, host, description, start_time, end_time, location, venue
         FROM event
         WHERE
-            eid IN (SELECT eid FROM event_member WHERE uid=%1$u)
-            AND creator=%1$u
+            eid IN (SELECT eid FROM event_member WHERE uid=%1$s)
+            AND creator=%1$s
             AND start_time > now()
         ORDER BY start_time ASC',
         $creatorId
