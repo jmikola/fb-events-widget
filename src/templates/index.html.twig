@@ -1,0 +1,70 @@
+{% extends 'layout.html.twig' %}
+
+{% block title 'Facebook Events Widget' %}
+
+{% block head_javascripts %}
+    <script type="text/javascript" src="{{ request.secure ? 'http' : 'https' }}://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+{% endblock %}
+
+{% block content %}
+    <header>
+        <h1>{{ block('title') }}</h1>
+    </header>
+    <section>
+        <label>
+            <span>Enter your profile alias or ID</span>
+            <input type="text" id="creatorId" value="" />
+            <div id="error" style="display: none;"></div>
+        </label>
+        <div id="output" style="display: none;">
+            <textarea id="code" rows="4" readonly></textarea>
+            <div id="preview"></div>
+        </div>
+    </section>
+
+    <div id="fb-root"></div>
+    <script type="text/javascript">
+        window.fbAsyncInit = function() {
+            FB.init({appId: '{{ facebookAppId }}', status: false, cookie: false, xfbml: false});
+        };
+        (function(){
+            var e = document.createElement('script');
+            e.async = true;
+            e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+            document.getElementById('fb-root').appendChild(e);
+
+            var generateCode = function() {
+                $('#error').empty().hide();
+                $('#output').hide();
+
+                FB.api('/' + $('#creatorId').val(), function(response) {
+                    $('#error').empty().hide();
+                    $('#output').hide();
+
+                    if (!response || response.error) {
+                        $('#error').text('An error occured. Are you sure you entered a valid profile alias or ID?').show();
+                        return;
+                    }
+
+                    var code = '<iframe src="{{ app.request.uriForPath("/") }}' + response.id + '" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:300px; height:300px;" allowTransparency="true"></iframe>';
+
+                    $('#code').val(code);
+                    $('#preview').html(code);
+                    $('#output').show();
+                });
+            };
+
+            $('#creatorId')
+                .change(generateCode)
+                .keydown(function(event) {
+                    console.log(event.which);
+                    if (event.which == 13) {
+                        event.preventDefault();
+                        generateCode();
+                    }
+                });
+
+            $('#code').click(function(){ this.focus(); this.select(); });
+        }());
+    </script>
+{% endblock %}

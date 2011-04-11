@@ -2,7 +2,11 @@
 
 $app = require __DIR__.'/bootstrap.php';
 
-$app->get('/', function(){});
+$app->get('/', function() use ($app) {
+    return $app['twig']->render('index.html.twig', array(
+        'facebookAppId' => $app['facebook.app.id'],
+    ));
+});
 
 $app->get('/{creatorId}', function($creatorId) use ($app) {
     $fql = sprintf('
@@ -21,7 +25,7 @@ $app->get('/{creatorId}', function($creatorId) use ($app) {
         'query' => $fql,
     ));
 
-    return $app['twig']->render('events.html.twig', array(
+    return $app['twig']->render('widget_events.html.twig', array(
         'events' => $events,
     ));
 });

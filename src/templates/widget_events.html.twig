@@ -1,0 +1,22 @@
+{% extends 'widget_layout.html.twig' %}
+
+{% block content %}
+    <div class="widget" style="height: 298px; width: 298px;">
+        <header class="widget-header">
+            <h1>Events</h1>
+        </header>
+        <section>
+            {% for event in events %}
+                <article>
+                    <header class="article-header">
+                        <h1><a href="https://www.facebook.com/event.php?eid={{ event.eid }}" target="_top">{{ event.name }}</a></h1>
+                        <p><time datetime="{{ event.start_time|date('c') }}" pubdate>{{ event.start_time|date('M j, Y \\a\\t ga') }}</time></p>
+                    </header>
+                </article>
+            {% endfor %}
+        </section>
+        <footer>
+            <div class="inner"><a href="{{ app.request.uriForPath('/') }}">{{ app.request.uriForPath('/') }}</a></div>
+        </footer>
+    </div>
+{% endblock %}
