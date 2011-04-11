@@ -25,8 +25,8 @@ $app->get('/', function() use ($app) {
     ));
 });
 
-$app->get('/{creatorId}', function($creatorId) use ($app) {
-    $fql = sprintf('
+$app->get('/{profileId}', function($profileId) use ($app) {
+    $fqlEvent = sprintf('
         SELECT eid, name, host, description, start_time, end_time, location, venue
         FROM event
         WHERE
@@ -34,16 +34,30 @@ $app->get('/{creatorId}', function($creatorId) use ($app) {
             AND creator=%1$s
             AND start_time > now()
         ORDER BY start_time ASC',
-        $creatorId
+        $profileId
     );
 
-    $events = $app['facebook']->api(array(
-        'method' => 'fql.query',
-        'query' => $fql,
+    $fqlProfile = sprintf('
+        SELECT id, name, url, type, username
+        FROM profile
+        WHERE id = %s',
+        $profileId
+    );
+
+    $result = $app['facebook']->api(array(
+        'method' => 'fql.multiquery',
+        'queries' => array(
+            'events'  => $fqlEvent,
+            'profile' => $fqlProfile,
+        ),
     ));
 
+    $events = isset($result[0]['fql_result_set']) ? $result[0]['fql_result_set'] : array();
+    $profile = isset($result[1]['fql_result_set'][0]) ? $result[1]['fql_result_set'][0] : null;
+
     return $app['twig']->render('widget_events.html.twig', array(
-        'events' => $events,
+        'events'  => $events,
+        'profile' => $profile,
     ));
 })->assert('creatorId', '\d+');
 

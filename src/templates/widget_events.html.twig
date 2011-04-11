@@ -13,6 +13,11 @@
                         <p><time datetime="{{ event.start_time|date('c') }}" pubdate>{{ event.start_time|date('M j, Y \\a\\t ga') }}</time></p>
                     </header>
                 </article>
+            {% else %}
+                <div class="widget-empty">
+                    <p><strong>Why is this empty?</strong></p>
+                    <p>{% if pfrofile %}<a href="{{ profile.url }}" target="_top">{{ profile.name }}</a>{% else %}The profile for this widget{% endif %} does not appear to have created any upcoming, public events.</p>
+                </div>
             {% endfor %}
         </section>
         <footer>

@@ -61,6 +61,10 @@ section article header.article-header p {
     margin: 0;
 }
 
+section div.widget-empty {
+    padding: 5px;
+}
+
 footer {
     background-color: #fff;
     bottom: 0;
