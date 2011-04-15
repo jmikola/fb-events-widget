@@ -2,7 +2,7 @@
 
 use JMikola\ConfigExtension;
 use JMikola\FacebookExtension;
-use JMikola\Twig\DateExtension;
+use JMikola\Twig\FacebookEventExtension;
 use Silex\Application;
 use Silex\Extension\TwigExtension;
 use Silex\Extension\UrlGeneratorExtension;
@@ -27,7 +27,7 @@ $app->register(new TwigExtension(), array(
     'twig.path' => __DIR__.'/templates',
     'twig.class_path' => __DIR__.'/../vendor/silex/vendor/twig/lib',
     'twig.configure' => $app->protect(function (\Twig_Environment $twig) use ($app) {
-        $twig->addExtension(new DateExtension());
+        $twig->addExtension(new FacebookEventExtension());
     }),
 ));
 
