@@ -1,4 +1,5 @@
 {% if app['facebook.app.id'] %}
+    <div id="fb-root"></div>
     <script type="text/javascript">
         window.fbAsyncInit = function() {
             FB.init({
@@ -11,9 +12,9 @@
             });
         };
         (function(){
-            var fb = document.createElement('script'); fb.type = 'text/javascript'; fb.async = true;
-            fb.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(fb, s);
+            var e = document.createElement('script'); e.type = 'text/javascript'; e.async = true;
+            e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+            document.getElementById('fb-root').appendChild(e);
         }());
     </script>
 {% endif %}
