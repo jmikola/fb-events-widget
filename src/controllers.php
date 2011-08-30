@@ -1,9 +1,7 @@
 <?php
 
 $app->get('/', function() use ($app) {
-    return $app['twig']->render('index.html.twig', array(
-        'facebookAppId' => $app['facebook.app.id'],
-    ));
+    return $app['twig']->render('index.html.twig');
 });
 
 $app->get('/{profileId}', function($profileId) use ($app) {

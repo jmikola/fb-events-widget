@@ -6,6 +6,7 @@
     <title>{% block title '' %}</title>
     <link href="{{ app.request.basepath }}/css/main.css" rel="stylesheet" />
     {% block head_javascripts '' %}
+    {% include '_fb.html.twig' %}
     {% include '_ga.html.twig' %}
 </head>
 <body>

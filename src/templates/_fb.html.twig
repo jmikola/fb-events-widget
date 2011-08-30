@@ -1,0 +1,17 @@
+{% if app['facebook.app.id'] %}
+    <script type="text/javascript">
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId: '{{ app["facebook.app.id"] }}'
+              , status: false
+              , cookie: false
+              , xfbml: false
+            });
+        };
+        (function(){
+            var fb = document.createElement('script'); fb.type = 'text/javascript'; fb.async = true;
+            fb.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(fb, s);
+        }());
+    </script>
+{% endif %}
