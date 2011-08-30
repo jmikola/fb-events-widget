@@ -21,10 +21,11 @@ $app->register(new FacebookExtension(), array(
 ));
 
 $app->register(new TwigExtension(), array(
-    'twig.path' => __DIR__.'/templates',
-    'twig.class_path' => __DIR__.'/../vendor/silex/vendor/twig/lib',
-    'twig.configure' => $app->protect(function (\Twig_Environment $twig) use ($app) {
+    'twig.cache.path' => __DIR__.'/cache/twig',
+    'twig.path'       => __DIR__.'/templates',
+    'twig.configure'  => $app->protect(function (\Twig_Environment $twig) use ($app) {
         $twig->addExtension(new FacebookEventExtension());
+        $twig->setCache($app['twig.cache.path']);
     }),
 ));
 
