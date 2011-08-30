@@ -3,9 +3,11 @@
         window.fbAsyncInit = function() {
             FB.init({
                 appId: '{{ app["facebook.app.id"] }}'
-              , status: false
-              , cookie: false
+              , status: true
+              , cookie: true
               , xfbml: false
+              , channelUrl: '{{ app.request.uriForPath("/channel.html") }}'
+              , oauth: true
             });
         };
         (function(){
