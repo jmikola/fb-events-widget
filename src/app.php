@@ -7,8 +7,6 @@ use Silex\Application;
 use Silex\Extension\TwigExtension;
 use Silex\Extension\UrlGeneratorExtension;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 $app = new Application();
 
@@ -31,17 +29,10 @@ $app->register(new TwigExtension(), array(
 
 $app->register(new UrlGeneratorExtension());
 
-$app->error(function (\Exception $e) use ($app) {
-    $error = null;
+$app->error(function (\Exception $e, $code) use ($app) {
+    $error = 404 == $code ? $e->getMessage() : null;
 
-    if ($e instanceof NotFoundHttpException || in_array($app['request']->server->get('REMOTE_ADDR'), array('127.0.0.1', '::1'))) {
-        $error = $e->getMessage();
-    }
-
-    return new Response(
-        $app['twig']->render('error.html.twig', array('error' => $error)),
-        $e instanceof HttpExceptionInterface ? $e->getStatusCode() : 500
-    );
+    return new Response($app['twig']->render('error.html.twig', array('error' => $error)), $code);
 });
 
 return $app;
