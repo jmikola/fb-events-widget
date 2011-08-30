@@ -1,8 +1,39 @@
 <?php
 
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+
 $app->get('/', function() use ($app) {
     return $app['twig']->render('index.html.twig');
 });
+
+$app->get('/auth/facebook', function() use ($app) {
+    $loginUrl = $app['facebook']->getLoginUrl(array(
+        'redirect_uri' => $app['url_generator']->generate('widgets', array('from_fb' => 1), true),
+        'scope'        => implode(',', $app['facebook.require_perms']),
+    ));
+    return $app->redirect($loginUrl);
+})->bind('login');
+
+$app->get('/widgets', function(Request $request) use ($app) {
+    if ($request->get('from_fb')) {
+        throw new AccessDeniedHttpException('We need certain Facebook permissions to continue');
+    }
+
+    if (0 === (string) $app['facebook']->getUser()) {
+        return $app->redirect($app['url_generator']->generate('login'));
+    }
+
+    $result = $app['facebook']->api('/me/permissions');
+
+    foreach ($app['facebook.require_perms'] as $perm) {
+        if (empty($result['data'][0][$perm])) {
+            return $app->redirect($app['url_generator']->generate('login'));
+        }
+    }
+
+    var_dump('Success!');
+})->bind('widgets');
 
 $app->get('/{profileId}', function($profileId) use ($app) {
     $fqlEvent = sprintf('

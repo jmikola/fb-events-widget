@@ -29,6 +29,12 @@ $app->register(new TwigExtension(), array(
 
 $app->register(new UrlGeneratorExtension());
 
+$app['facebook.require_perms'] = array(
+    'user_events',
+    'offline_access',
+    'manage_pages'
+);
+
 $app->error(function (\Exception $e, $code) use ($app) {
     if ($app['debug']) {
         return;
