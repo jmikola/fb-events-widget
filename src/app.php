@@ -1,8 +1,8 @@
 <?php
 
-use JMikola\ConfigExtension;
-use JMikola\FacebookExtension;
-use JMikola\Twig\FacebookEventExtension;
+use Fbew\ConfigExtension;
+use Fbew\FacebookExtension;
+use Fbew\Twig\FacebookEventExtension;
 use Silex\Application;
 use Silex\Extension\TwigExtension;
 use Silex\Extension\UrlGeneratorExtension;

@@ -1,6 +1,6 @@
 <?php
 
-namespace JMikola\Twig;
+namespace Fbew\Twig;
 
 class FacebookEventExtension extends \Twig_Extension
 {

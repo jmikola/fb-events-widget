@@ -1,6 +1,6 @@
 <?php
 
-namespace JMikola;
+namespace Fbew;
 
 use Silex\Application;
 use Silex\ExtensionInterface;
