@@ -1,2 +1,4 @@
 src/cache/*
 src/parameters.ini
+composer.lock
+vendor

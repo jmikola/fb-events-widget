@@ -1,0 +1,7 @@
+{
+    "require": {
+        "facebook/php-sdk": "dev-master",
+        "silex/silex": "dev-master",
+        "twig/twig": "1.8.*"
+    }
+}
