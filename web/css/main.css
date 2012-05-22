@@ -11,16 +11,18 @@ body {
     margin: 50px auto;
     min-height: 50%;
     padding: 0;
-    width: 400px;
+    width: 500px;
 }
 
 header h1 {
     font-family: "Paytone One", "Helvetica Neue", Arial, Helvetica, sans-serif;
     font-size: 32px;
+    text-align: center;
 }
 
 label span {
     display: block;
+    margin: 0 50px;
     text-align: center;
 }
 
