@@ -30,6 +30,10 @@ $app->register(new TwigServiceProvider(), array(
 $app->register(new UrlGeneratorServiceProvider());
 
 $app->error(function (\Exception $e, $code) use ($app) {
+    if ($app['debug']) {
+        return;
+    }
+
     $error = 404 == $code ? $e->getMessage() : null;
 
     return new Response($app['twig']->render('error.html.twig', array('error' => $error)), $code);
