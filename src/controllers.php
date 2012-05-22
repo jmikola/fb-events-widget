@@ -38,11 +38,6 @@ $app->get('/{profileId}', function($profileId) use ($app) {
 
     $timezone = new \DateTimeZone(ini_get('date.timezone'));
 
-    foreach ($events as &$event) {
-        $event['start_time'] = $app['facebook.normalizeEventTimestamp']($event['start_time'], $timezone);
-        $event['end_time'] = $app['facebook.normalizeEventTimestamp']($event['end_time'], $timezone);
-    }
-
     return $app['twig']->render('widget_events.html.twig', array(
         'events'   => $events,
         'profile'  => $profile,

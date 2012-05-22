@@ -19,17 +19,6 @@ class FacebookServiceProvider implements ServiceProviderInterface
             ));
         });
 
-        $app['facebook.normalizeEventTimestamp'] = $app->protect(function($time, \DateTimeZone $timezone) {
-            $date = new \DateTime('@' . $time);
-            $date->setTimeZone(new \DateTimeZone('America/Los_Angeles'));
-            $fbOffset = $date->getOffset();
-
-            $date->setTimeZone($timezone);
-            $tzOffset = $date->getOffset();
-
-            return $date->getTimestamp() + $fbOffset - $tzOffset;
-        });
-
         if (isset($app['facebook.class_file'])) {
             spl_autoload_register(function($class) use ($app) {
                 if ('\\' === $class[0]) {
