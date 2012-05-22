@@ -3,9 +3,9 @@
 namespace Fbew;
 
 use Silex\Application;
-use Silex\ExtensionInterface;
+use Silex\ServiceProviderInterface;
 
-class ConfigExtension implements ExtensionInterface
+class ConfigServiceProvider implements ServiceProviderInterface
 {
     public function register(Application $app)
     {
