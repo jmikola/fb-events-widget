@@ -1,4 +1,4 @@
-src/cache/*
-src/parameters.ini
+cache/*
 composer.lock
+src/parameters.ini
 vendor

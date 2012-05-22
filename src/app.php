@@ -19,8 +19,8 @@ $app->register(new FacebookServiceProvider(), array(
 ));
 
 $app->register(new TwigServiceProvider(), array(
-    'twig.cache.path' => __DIR__.'/cache/twig',
-    'twig.path'       => __DIR__.'/templates',
+    'twig.cache.path' => __DIR__.'/../cache',
+    'twig.path'       => __DIR__.'/views',
     'twig.configure'  => $app->protect(function (\Twig_Environment $twig) use ($app) {
         $twig->addExtension(new FacebookEventExtension());
         $twig->setCache($app['twig.cache.path']);
