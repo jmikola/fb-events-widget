@@ -15,6 +15,7 @@ body {
 }
 
 header h1 {
+    font-family: "Paytone One", "Helvetica Neue", Arial, Helvetica, sans-serif;
     font-size: 32px;
 }
 
@@ -29,6 +30,7 @@ label input {
     font-size: 18px;
     margin: 0 auto;
     padding: 3px;
+    width: 65%;
 }
 
 label #error {

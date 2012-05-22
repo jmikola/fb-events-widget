@@ -13,7 +13,7 @@
     <section>
         <label>
             <span>Enter a profile's alias or ID and we'll create a widget to share its public events.</span>
-            <input type="text" id="creatorId" value="" />
+            <input type="text" id="profileId" value="" />
             <div id="error" style="display: none;"></div>
         </label>
         <div id="output" style="display: none;">
@@ -37,7 +37,7 @@
                 $('#error').empty().hide();
                 $('#output').hide();
 
-                FB.api('/' + $('#creatorId').val(), function(response) {
+                FB.api('/' + $('#profileId').val(), function(response) {
                     $('#error').empty().hide();
                     $('#output').hide();
 
@@ -54,7 +54,7 @@
                 });
             };
 
-            $('#creatorId')
+            $('#profileId')
                 .change(generateCode)
                 .keydown(function(event) {
                     console.log(event.which);
