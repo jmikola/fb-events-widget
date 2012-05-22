@@ -48,4 +48,4 @@ $app->get('/{profileId}', function($profileId) use ($app) {
         'profile'  => $profile,
         'timezone' => $timezone,
     ));
-})->assert('creatorId', '\d+');
+})->assert('profileId', '\d+');
