@@ -1,4 +1,4 @@
-{% if app['google.analytics.id'] %}
+{% if app['google.analytics.id']|default(false) %}
     <script type="text/javascript">
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', '{{ app["google.analytics.id"] }}']);
