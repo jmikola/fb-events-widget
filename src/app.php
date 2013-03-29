@@ -1,6 +1,5 @@
 <?php
 
-use Fbew\ConfigServiceProvider;
 use Fbew\FacebookServiceProvider;
 use Fbew\Twig\FacebookEventExtension;
 use Silex\Application;
@@ -10,9 +9,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 $app = new Application();
 
-$app->register(new ConfigServiceProvider(), array(
-    'config.ini_file' => __DIR__.'/parameters.ini',
-));
+require_once is_file(__DIR__.'/config.php')
+    ? __DIR__.'/config.php'
+    : __DIR__.'/config.php.dist';
 
 $app->register(new FacebookServiceProvider(), array(
     'facebook.class_file' => __DIR__.'/../vendor/facebook/src/facebook.php',

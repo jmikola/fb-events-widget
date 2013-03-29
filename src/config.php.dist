@@ -1,0 +1,5 @@
+<?php
+
+$app['facebook.app.id'] = null;
+$app['facebook.app.secret'] = null;
+$app['google.analytics.id'] = null;

@@ -1,4 +1,4 @@
 cache/*
 composer.lock
-src/parameters.ini
+src/config.php
 vendor

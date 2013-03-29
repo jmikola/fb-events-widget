@@ -15,9 +15,9 @@ Ensure the `cache/` directory is writable by your web server.
 
 ### Configuration
 
-The `src/` directory includes a `parameters.ini.dist` file, which should be
-copied to `parameters.ini` and populated with your Facebook application's ID and
-secret key.
+The `src/` directory includes a `config.php.dist` file, which should be copied
+to `config.php` and customized with your Facebook application's ID and secret
+key. Additionally, you may specify a Google Analytics ID.
 
   [1]: http://silex.sensiolabs.org/
   [2]: http://getcomposer.org/
