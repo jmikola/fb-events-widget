@@ -18,17 +18,9 @@ class FacebookServiceProvider implements ServiceProviderInterface
                 'fileUpload' => isset($app['facebook.app.fileUpload']) ? $app['facebook.app.fileUpload'] : null,
             ));
         });
+    }
 
-        if (isset($app['facebook.class_file'])) {
-            spl_autoload_register(function($class) use ($app) {
-                if ('\\' === $class[0]) {
-                    $class = substr($class, 1);
-                }
-
-                if ('Facebook' === $class) {
-                    require_once $app['facebook.class_file'];
-                }
-            });
-        }
+    public function boot(Application $app)
+    {
     }
 }

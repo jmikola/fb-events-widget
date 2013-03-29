@@ -1,7 +1,14 @@
 {
     "require": {
-        "facebook/php-sdk": "dev-master",
-        "silex/silex": "dev-master",
-        "twig/twig": "1.8.*"
+        "php": ">=5.4.0",
+        "facebook/php-sdk": "3.2.*",
+        "silex/silex": "1.0.*@dev",
+        "symfony/twig-bridge": "~2.1",
+        "twig/twig": "~1.9"
+    },
+    "autoload": {
+        "psr-0": {
+            "Fbew": "src/"
+        }
     }
 }

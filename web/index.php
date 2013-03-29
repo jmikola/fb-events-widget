@@ -1,6 +1,8 @@
 <?php
 
-require_once __DIR__.'/../src/autoload.php';
+if (php_sapi_name() === 'cli-server' && is_file(__DIR__.preg_replace('#(\?.*)$#', '', $_SERVER['REQUEST_URI']))) {
+    return false;
+}
+
 $app = require __DIR__.'/../src/app.php';
-require __DIR__.'/../src/controllers.php';
 $app->run();
