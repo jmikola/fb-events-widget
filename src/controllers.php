@@ -11,8 +11,8 @@ $app->get('/{profileId}', function($profileId) use ($app) {
         SELECT eid, name, host, description, start_time, end_time, location, venue
         FROM event
         WHERE
-            eid IN (SELECT eid FROM event_member WHERE uid=%1$s)
-            AND creator=%1$s
+            eid IN (SELECT eid FROM event_member WHERE uid = %1$s)
+            AND not(creator != %1$s)
             AND start_time > now()
         ORDER BY start_time ASC',
         $profileId
