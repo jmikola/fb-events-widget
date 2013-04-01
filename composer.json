@@ -1,4 +1,13 @@
 {
+    "name": "jmikola/fb-events-widget",
+    "type": "silex-application",
+    "description": "Embeddable widget for listing Facebook events.",
+    "keywords": ["facebook", "events"],
+    "homepage": "https://github.com/jmikola/fb-events-widget",
+    "license": "MIT",
+    "authors": [
+        { "name": "Jeremy Mikola", "email": "jmikola@gmail.com" }
+    ],
     "require": {
         "php": ">=5.4.0",
         "facebook/php-sdk": "3.2.*",
