@@ -1,4 +1,3 @@
-cache/*
-composer.lock
 src/config.php
-vendor
+vendor/*
+
