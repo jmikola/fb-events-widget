@@ -18,6 +18,7 @@ to `config.php` and customized. Currently, the following options are available:
  * `facebook.app.id`: Facebook application ID (required)
  * `facebook.app.secret`: Facebook application secret (required)
  * `google.analytics.id`: Google Analytics ID
+ * `google.analytics.tld`: Google Analytics TLD
  * `twig.cache_dir`: Cache directory for Twig templates
 
 #### Cache Directory

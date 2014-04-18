@@ -4,4 +4,5 @@ $app['debug'] = false;
 $app['facebook.app.id'] = null;
 $app['facebook.app.secret'] = null;
 $app['google.analytics.id'] = null;
+$app['google.analytics.tld'] = null;
 $app['twig.cache_dir'] = sys_get_temp_dir() . '/fbew-cache';
